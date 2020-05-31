@@ -6,4 +6,5 @@ public class Flete extends Transporte{
 	private boolean refrigeracion;
 	
 	
+	
 }
