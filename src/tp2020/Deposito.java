@@ -6,21 +6,19 @@ public class Deposito {
 		
 	private ArrayList <Paquete> paquetes;
 	private Integer numDeposito;
-	private Integer costoDeposito;
-	private boolean refrigeracion;
-	private boolean depositoPropio;
+	private double costoPorTonelada;
+	private double capacidad;
+	private boolean frigorifico;
+	private boolean propio;
 	
-	public Deposito (Integer numDeposito, Integer costoDeposito, boolean refrigeracion, boolean depositoPropio) {
+	public Deposito (double capacidad, boolean frigorifico, boolean propio) {
 		
-		if ( numDeposito<0)
+		if ( capacidad<0)
 			throw new RuntimeException ("Valor de variable invalido");
-		if ( costoDeposito<0)
-			throw new RuntimeException ("Valor de variable invalido");
+		this.capacidad = capacidad;
 		this.paquetes = new ArrayList<Paquete>();
-		this.numDeposito = numDeposito;
-		this.costoDeposito = costoDeposito;
-		this.refrigeracion = refrigeracion;
-		this.depositoPropio = depositoPropio;
+		this.frigorifico = frigorifico;
+		this.propio = propio;
 		
 	}
 	//////////////Getters & Setters///////////////
@@ -33,41 +31,54 @@ public class Deposito {
 		this.numDeposito = numDeposito;
 	}
 
-	public Integer getCostoDeposito() {
-		return costoDeposito;
+	public double getCostoDeposito() {
+		return costoPorTonelada;
 	}
 
-	protected void setCostoDeposito(Integer costoDeposito) {
-		this.costoDeposito = costoDeposito;
+	protected void setCostoDeposito(double costoPorTonelada) {
+		this.costoPorTonelada = costoPorTonelada;
 	}
 
 	public boolean isRefrigeracion() {
-		return refrigeracion;
+		return frigorifico;
 	}
-
+ 
 	protected void setRefrigeracion(boolean refrigeracion) {
-		this.refrigeracion = refrigeracion;
+		this.frigorifico = frigorifico;
 	}
 
 	public boolean isDepositoPropio() {
-		return depositoPropio;
+		return propio;
 	}
 
 	protected void setDepositoPropio(boolean depositoPropio) {
-		this.depositoPropio = depositoPropio;
+		this.propio = propio;
 	}
 	
 //////////////Funciones TP///////////////
 	
-	public boolean incorporarPaquete( String destino, 
-			Integer volumen, Integer peso, boolean refrigeracion) { 
-		//DESARROLLAR
-		return false;
+	
+	
+	public boolean incorporarPaquete (String destino, double peso, double volumen,
+			boolean frio) { 
+		System.out.println("volumen: " +volumen + "   capacidad: " +capacidad);
+		System.out.println("frio: " +frio + "   frigorifico: " +frigorifico);
+		
+		if (capacidad < volumen || frio != frigorifico)
+			return false; 
+		
+		Paquete paq = new Paquete (destino, peso, volumen, frio);
+		capacidad=capacidad - volumen;
+		paquetes.add(paq);
+		return true;
 	}
 	
-	public void eliminarPaquete () {  //Al cargar paquete al camion eliminar del deposito
-		//DESARROLLAR
+	public void eliminarPaquete () {  //DESARROLLAR
+		
 	}
 	
+	public void cargarTransporte () {  
+		
+	}
 	
 }

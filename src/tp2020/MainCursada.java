@@ -10,7 +10,7 @@ public class MainCursada {
 		e.agregarDeposito(50000, true, true);
 		e.agregarDeposito(80000, false, true);
 		e.agregarDeposito(90000, false, false);
-		e.agregarDestino("Rosario", 100);
+		e.agregarDestino("Rosario", 100); 
 		e.agregarDestino("Buenos Aires", 400);
 		e.agregarDestino("Mar del Plata", 800);
 		e.agregarTrailer("AA333XQ", 10000, 60, true, 2, 100);

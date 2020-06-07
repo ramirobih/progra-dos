@@ -16,21 +16,14 @@ public class Viaje {
 		
 	}
 
-	public String getDestino() {
+	public String getDestino() { 
 		return destino;
 	}
 
-	protected void setDestino(String destino) {
-		this.destino = destino;
-	}
-
+	
 	public Integer getDistanciaKm() {
 		return distanciaKm;
 	}
 
-	protected void setDistanciaKm(Integer distanciaKm) {
-		this.distanciaKm = distanciaKm;
-	}
-	
 	
 }

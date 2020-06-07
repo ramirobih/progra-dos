@@ -19,6 +19,7 @@ public class TestTP {
 
 	@Test
 	public void testAgregarDeposito() {
+		System.out.println("testAgregarDeposito");
 		int dep1, dep2;
 		dep1 = emp.agregarDeposito(30000, false, true);
 		dep2 = emp.agregarDeposito(40000, true, true);
@@ -28,6 +29,7 @@ public class TestTP {
 
 	@Test
 	public void testIncorporarPaqueteSinLugar() {
+		System.out.println("testIncorporarPaqueteSinLugar");
 		emp.agregarDeposito(30000, false, true);
 		// No hay deposito para un paquete que necesita frio
 		assertFalse(emp.incorporarPaquete("Cordoba", 100, 5, true));
@@ -35,6 +37,7 @@ public class TestTP {
 
 	@Test
 	public void testIncorporarPaqueteConLugar() {
+		System.out.println("testIncorporarPaqueteConLugar");
 		emp.agregarDeposito(30000, true, true);
 		// El paquete debe haberse incorporado al deposito
 		assertTrue(emp.incorporarPaquete("Cordoba", 100, 5, true));
@@ -42,6 +45,7 @@ public class TestTP {
 
 	@Test
 	public void testTrailerFrio() {
+		System.out.println("testTrailerFrio");
 		emp.agregarDeposito(30000, false, false);
 		emp.agregarDepTercerizFrio(80000, 50);
 		emp.agregarTrailer("AC314PI", 12000, 60, true, 5, 100);
@@ -62,6 +66,7 @@ public class TestTP {
 
 	@Test
 	public void testMegaTrailer() {
+		System.out.println("testMegaTrailer");
 		emp.agregarDeposito(30000, false, false);
 		emp.agregarDeposito(30000, true, true);
 		emp.agregarMegaTrailer("AD161AU", 18000, 120, false, 10, 150, 500, 300);
@@ -82,6 +87,7 @@ public class TestTP {
 
 	@Test
 	public void testTransIguales() {
+		System.out.println("testTransIguales");
 		emp.agregarDeposito(40000, false, false);
 
 		emp.agregarFlete("AB271NE", 8000, 40, 3, 2, 200);

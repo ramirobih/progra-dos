@@ -2,40 +2,40 @@ package tp2020;
 
 public class Paquete {
 	
-	private Integer pesoPaquete;
-	private Integer volumenPaquete;
+	private double peso;
+	private double volumen;
 	private String destino;
-	private boolean refrigeracion;
+	private boolean frio;
 	
-	public Paquete () {
+	public Paquete (String destino, double peso, double volumen, boolean frio) { 
 		
-		if ( pesoPaquete<0)
+		if ( peso<0)
 			throw new RuntimeException ("Valor de variable invalido");
-		if ( volumenPaquete<0)
+		if ( volumen<0)
 			throw new RuntimeException ("Valor de variable invalido");
 		if ( destino==null)
 			throw new RuntimeException ("Valor de variable invalido");
-		this.pesoPaquete = pesoPaquete;
-		this.volumenPaquete = volumenPaquete;
+		this.peso = peso;
+		this.volumen = volumen;
 		this.destino = destino;
-		this.refrigeracion = refrigeracion;
+		this.frio = frio;
 	}
 	//////////////Getters & Setters///////////////
 
-	public Integer getPesoPaquete() {
-		return pesoPaquete;
+	public double getPesoPaquete() {
+		return peso;
 	}
 
-	protected void setPesoPaquete(Integer pesoPaquete) {
-		this.pesoPaquete = pesoPaquete;
+	protected void setPesoPaquete(double peso) {
+		this.peso = peso;
 	}
 
-	public Integer getVolumenPaquete() {
-		return volumenPaquete;
+	public double getVolumenPaquete() {
+		return volumen;
 	}
 
-	protected void setVolumenPaquete(Integer volumenPaquete) {
-		this.volumenPaquete = volumenPaquete;
+	protected void setVolumenPaquete(double volumen) {
+		this.volumen = volumen;
 	}
 
 	public String getDestino() {
@@ -47,11 +47,11 @@ public class Paquete {
 	}
 
 	public boolean isRefrigeracion() {
-		return refrigeracion;
+		return frio;
 	}
 
-	protected void setRefrigeracion(boolean refrigeracion) {
-		this.refrigeracion = refrigeracion;
+	protected void setRefrigeracion(boolean frio) {
+		this.frio = frio;
 	}
 	
 	
