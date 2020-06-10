@@ -16,10 +16,10 @@ public class Paquete {
 		if ( destino==null)
 			throw new RuntimeException ("Valor de variable invalido");
 		this.peso = peso;
-		this.volumen = volumen;
+		this.volumen = volumen; 
 		this.destino = destino;
 		this.frio = frio;
-	}
+	} 
 	//////////////Getters & Setters///////////////
 
 	public double getPesoPaquete() {
@@ -53,6 +53,31 @@ public class Paquete {
 	protected void setRefrigeracion(boolean frio) {
 		this.frio = frio;
 	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paquete other = (Paquete) obj;
+		if (destino == null) {
+			if (other.destino != null)
+				return false;
+		} else if (!destino.equals(other.destino))
+			return false;
+		if (frio != other.frio)
+			return false;
+		if (Double.doubleToLongBits(peso) != Double.doubleToLongBits(other.peso))
+			return false;
+		if (Double.doubleToLongBits(volumen) != Double.doubleToLongBits(other.volumen))
+			return false;
+		return true;
+	}
+	
 	
 	
 	

@@ -5,30 +5,47 @@ public class Trailer extends Transporte {
 	private double segCarga;
 
 	
-	public Trailer(String idTransp, double cargaMax, double capacidad, boolean frigorifico, double costoKm, double segCarga) {
+	public Trailer(String idTransp, double cargaMax,
+			double capacidad, boolean frigorifico, double costoKm, double segCarga) {
 		
-		super(idTransp, cargaMax, capacidad, frigorifico, costoKm);
+		super(idTransp, cargaMax, capacidad, frigorifico, costoKm, "Trailer");
+		if ( segCarga<=0)
+			throw new RuntimeException ("Valor de variable invalido");
 		this.segCarga = segCarga;
 		
 		
+	}	
+	
+	double obtenerCostoViaje() { //COMPLETAR v 1.1
+		
+		return segCarga + (getCostoKm()*getViajeDestino().getDistanciaKm())+getCostoCargaDep();
+		 
 	}
-
-	@Override
-	double obtenerCostoViaje(String idTransporte) { //COMPLETAR
-		return 0;
+	//Trailer Comun: destino < 500km
+	//Megatrailer : destino > 500km
+	
+	
+	void asignarDestino(Viaje viaje) {
+		if (viaje.getDistanciaKm()>500)
+			throw new RuntimeException("El transporte no puede realizar el viaje");
+		viajeDestino = viaje;
 		
 	}
 
 	@Override
-	void iniciarViaje(String idTransp) {
-		// TODO Auto-generated method stub
+	public String toString() {
 		
-	}
-
-	@Override
-	void finalizarViaje(String idTransp) {
-		// TODO Auto-generated method stub
-		
-	}
+			StringBuilder sb = new StringBuilder();
+			sb.append("ID: ");
+			sb.append(getIdTransporte());
+			sb.append(". Tipo de transporte:  Trailer ");
+			sb.append(". Esta en viaje: ");
+			sb.append(isEnViaje());
+			sb.append(". \n");
+			return sb.toString();
+		//return "Trailer [segCarga=" + segCarga + "]";
+	}	
+	
+	
 
 }

@@ -5,7 +5,7 @@ public class MainCursada {
 	public static void main(String[] args) {
 		double cargado;
 		Empresa e = new Empresa("30112223334","La Santafesina");
-		System.out.println(e.toString());
+		System.out.println(e.toString()); 
 		e.agregarDepTercerizFrio(40000, 10);
 		e.agregarDeposito(50000, true, true);
 		e.agregarDeposito(80000, false, true);
@@ -39,5 +39,5 @@ public class MainCursada {
 		e.finalizarViaje("AA333XQ");
 		System.out.println(e.toString());
 		}
-	
-}
+	  
+} 

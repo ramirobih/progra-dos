@@ -1,6 +1,8 @@
 package tp2020;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class Deposito {
 		
@@ -27,6 +29,12 @@ public class Deposito {
 		return numDeposito;
 	}
 
+	
+	
+	public boolean isFrigorifico() {
+		return frigorifico;
+	}
+
 	protected void setNumDeposito(Integer numDeposito) {
 		this.numDeposito = numDeposito;
 	}
@@ -43,42 +51,71 @@ public class Deposito {
 		return frigorifico;
 	}
  
-	protected void setRefrigeracion(boolean refrigeracion) {
-		this.frigorifico = frigorifico;
-	}
 
 	public boolean isDepositoPropio() {
 		return propio;
 	}
 
-	protected void setDepositoPropio(boolean depositoPropio) {
-		this.propio = propio;
-	}
 	
 //////////////Funciones TP///////////////
 	
 	
-	
-	public boolean incorporarPaquete (String destino, double peso, double volumen,
-			boolean frio) { 
-		System.out.println("volumen: " +volumen + "   capacidad: " +capacidad);
-		System.out.println("frio: " +frio + "   frigorifico: " +frigorifico);
+	 
+	public boolean incorporarPaquete (String destino,
+			double peso, double volumen, boolean frio) { 
+		
+		//System.out.println("volumen: " +volumen + "   capacidad: " +capacidad);
+		//System.out.println("frio: " +frio + "   frigorifico: " +frigorifico);
 		
 		if (capacidad < volumen || frio != frigorifico)
 			return false; 
 		
 		Paquete paq = new Paquete (destino, peso, volumen, frio);
 		capacidad=capacidad - volumen;
-		paquetes.add(paq);
-		return true;
-	}
+		paquetes.add(paq);		
+		return true; 
+	} 
 	
-	public void eliminarPaquete () {  //DESARROLLAR
+	
+	public double cargarTransporte (Transporte transp) {  
 		
-	}
-	
-	public void cargarTransporte () {  
+		double volumenCargado = 0;
+		double pesoCargado = 0;
 		
+		
+		Iterator<Paquete> paq=paquetes.iterator();
+		
+		while( paq.hasNext()) {
+			Paquete p=paq.next();
+			if (p.getDestino()==transp.getDestino()) {
+				if (transp.cargarTransporte(p)) {
+					paq.remove();
+					volumenCargado = volumenCargado + p.getVolumenPaquete();
+					pesoCargado = pesoCargado + p.getPesoPaquete();
+					
+				}	
+			}
+		} 
+		
+		
+		if (pesoCargado>=1000) {				
+			double ret=Math.floor(pesoCargado/1000); //redondeo para abajo
+			transp.setCostoCargaDep(costoPorTonelada*ret);		
+		}
+		
+		return volumenCargado;
 	}
 	
+	@Override
+	public String toString() {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(". Es deposito propio : ");
+		sb.append(isDepositoPropio());
+		sb.append(". Es frigorifico: ");
+		sb.append(isFrigorifico());
+		sb.append(". \n");
+		return sb.toString();
+	}	
 }

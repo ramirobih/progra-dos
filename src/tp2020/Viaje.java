@@ -25,5 +25,14 @@ public class Viaje {
 		return distanciaKm;
 	}
 
-	
+	public String toString() {
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Destino: ");
+		sb.append(getDestino());
+		sb.append(". Distancia:  ");
+		sb.append(getDistanciaKm());
+		sb.append(".");
+		return sb.toString();
+	}
 }
